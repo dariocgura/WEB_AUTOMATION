@@ -7,6 +7,7 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 
 public class DriverManager {
     private static WebDriver driver;
@@ -20,9 +21,9 @@ public class DriverManager {
     public void setUp(){
         //Se ejecutará Automáticamente
         System.setProperty("webdriver.http.factory", "jdk-http-client");
-        System.setProperty("webdriver.chrome.driver", "drivers\\chromedriver.exe");
+        System.setProperty("webdriver.edge.driver", "drivers\\msedgedriver.exe");
 
-        driver = new ChromeDriver();
+        driver = new EdgeDriver();
         driver.manage().window().maximize();
     }
     @Before(order = 1)
