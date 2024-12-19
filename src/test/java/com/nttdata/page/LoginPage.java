@@ -35,7 +35,7 @@ public class LoginPage {
 
     public static By carritoTitulo = By.xpath("//*[@id=\"main\"]/div/div[1]/div/div[1]/h1");
 
-    public static By finalCantidad = By.xpath("//*[@id=\"main\"]/div/div[1]/div/div[2]/ul/li/div/div[3]/div/div[2]/div/div[1]/div/input");
+    public static By finalCantidad = By.xpath("//*[@id=\"cart-subtotal-products\"]/span[1]");
 
     public static By finalPrecio = By.xpath("//*[@id=\"main\"]/div/div[1]/div/div[2]/ul/li/div/div[2]/div[2]/div[2]/span");
 

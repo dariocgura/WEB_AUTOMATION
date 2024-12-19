@@ -79,6 +79,7 @@ public class LoginStepsDef {
     public void finalizoLaCompra() {
         LoginSteps loginSteps =new LoginSteps(driver);
         loginSteps.endCompra();
+        screenShot();
 
     }
 
@@ -87,6 +88,7 @@ public class LoginStepsDef {
     public void validoElTituloDeLaPaginaDelCarrito() {
         LoginSteps loginSteps =new LoginSteps(driver);
         loginSteps.validarTitulo();
+        screenShot();
 
     }
 
@@ -95,6 +97,7 @@ public class LoginStepsDef {
     public void vuelvoAValidarElCalculoDePreciosEnElCarrito() {
         LoginSteps loginSteps =new LoginSteps(driver);
         loginSteps.validarTotalPopupEnd();
+        screenShot();
 
     }
 
@@ -102,6 +105,7 @@ public class LoginStepsDef {
     public void validoAutentificacion() {
         LoginSteps loginSteps =new LoginSteps(driver);
         loginSteps.validarNOAUT();
+        screenShot();
 
     }
 }

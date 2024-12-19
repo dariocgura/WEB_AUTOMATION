@@ -196,28 +196,32 @@ public class LoginSteps {
 
 
     public void validarTotalPopupEnd() {
-        int cantidadArticulo=1;
+
         // Esperar a que el popup sea visible
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        // Obtener la cantidad de artículos desde LoginPage.finalCantidad
         WebElement cantidadElement = wait.until(ExpectedConditions.visibilityOfElementLocated(LoginPage.finalCantidad));
-        String cantidadText = cantidadElement.getText();  // Obtener el texto
 
-        // Validar si el texto no está vacío y es un número válido
+        // Obtener el texto del elemento
+        String cantidadTexto = cantidadElement.getText();
 
-        try {
-            if (cantidadText != null && !cantidadText.isEmpty() && cantidadText.matches("\\d+")) {
-                cantidadArticulo = Integer.parseInt(cantidadText);
-                System.out.println("Cantidad de artículos: " + cantidadArticulo);
-            } else {
-                System.out.println("El valor de la cantidad no es válido: " + cantidadText);
-                // Aquí puedes manejar el caso en que el valor no es válido, por ejemplo, lanzando una excepción
-            }
-        } catch (NumberFormatException e) {
-            System.out.println("Error al convertir la cantidad: " + cantidadText);
-            throw e;  // Lanza la excepción si no se puede convertir
+        // Usar una expresión regular para extraer los números
+        Pattern pattern = Pattern.compile("\\d+"); // Encuentra secuencias de dígitos
+        Matcher matcher = pattern.matcher(cantidadTexto);
+
+        int cantidadArticulos = 0; // Valor por defecto si no hay números en el texto
+        if (matcher.find()) {
+            // Convertir el primer número encontrado a entero
+            cantidadArticulos = Integer.parseInt(matcher.group());
+            System.out.println("Cantidad de artículos: " + cantidadArticulos);
+        } else {
+            System.out.println("No se encontraron números en el texto: " + cantidadTexto);
         }
+
+
+
+
+
 
         // Obtener el valor de cada artículo desde LoginPage.finalPrecio
         WebElement valorElement = wait.until(ExpectedConditions.visibilityOfElementLocated(LoginPage.finalPrecio));
@@ -241,8 +245,8 @@ public class LoginSteps {
         String totalPopuptxt = totalElement.getText().replace(",", "").replace("S/", "").trim();  // Eliminar comas y el símbolo de moneda
 
         // Usar una expresión regular para extraer solo los números (incluyendo decimales)
-        Pattern pattern = Pattern.compile("[0-9.]+");
-        Matcher matcher = pattern.matcher(totalPopuptxt);
+        pattern = Pattern.compile("[0-9.]+");
+        matcher = pattern.matcher(totalPopuptxt);
 
         String valorNumerico = "";
         if (matcher.find()) {
@@ -264,7 +268,7 @@ public class LoginSteps {
         }
 
         // Calcular el total esperado
-        double totalEsperado = cantidadArticulo * valorArticulo;
+        double totalEsperado = cantidadArticulos * valorArticulo;
 
         // Validar si el total calculado coincide con el total mostrado en el popup
         if (Math.abs(totalEsperado - totalPopup) < 0.01) {  // Comparación con un pequeño margen de error
