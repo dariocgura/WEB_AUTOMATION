@@ -21,3 +21,4 @@ Feature: Product-Store
       Given estoy en la página de la tienda
       When me logueo con mi usuario "dagggg@gmail.com" y clave "Laespera"
       Then valido autentificacion
+

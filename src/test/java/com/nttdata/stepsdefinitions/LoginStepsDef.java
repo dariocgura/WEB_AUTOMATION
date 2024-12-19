@@ -1,18 +1,11 @@
 package com.nttdata.stepsdefinitions;
 
 import com.nttdata.page.LoginPage;
-import com.nttdata.steps.InventorySteps;
 import com.nttdata.steps.LoginSteps;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.cucumber.java.es.Cuando;
-import io.cucumber.java.es.Dado;
-import io.cucumber.java.es.Entonces;
-import io.cucumber.java.es.Y;
-import org.junit.jupiter.api.Assertions;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,6 +45,7 @@ public class LoginStepsDef {
     public void navegoALaCategoriaYSubcategoria(String categoria, String subcategoria) {
         LoginSteps loginSteps =new LoginSteps(driver);
         loginSteps.navegocategoria(categoria,subcategoria);
+        screenShot();
     }
 
     @And("agrego unidades del primer producto al carrito")
@@ -59,12 +53,14 @@ public class LoginStepsDef {
         LoginSteps loginSteps =new LoginSteps(driver);
 
         loginSteps.agregarProductos();
+        screenShot();
     }
 
     @Then("valido en el popup la confirmación del producto agregado")
     public void validoEnElPopupLaConfirmacionDelProductoAgregado() {
         LoginSteps loginSteps =new LoginSteps(driver);
         loginSteps.validarPopupVisible();
+        screenShot();
 
     }
 
@@ -72,6 +68,7 @@ public class LoginStepsDef {
     public void validoEnElPopupQueElMontoTotalSeaCalculadoCorrectamente() {
         LoginSteps loginSteps =new LoginSteps(driver);
         loginSteps.validarTotalPopup();
+        screenShot();
     }
 
 
